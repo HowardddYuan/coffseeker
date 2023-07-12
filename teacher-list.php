@@ -40,6 +40,7 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
 
 <body>
 <div class="container">
+    <h1 class="mt-5">教師清單</h1>
         <div class="py-2">
             <form action="search.php">
                 <div class="row gx-2">

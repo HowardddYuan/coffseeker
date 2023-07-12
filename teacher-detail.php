@@ -68,8 +68,8 @@ $rows=$result->fetch_all(MYSQLI_ASSOC);
               <?php endforeach; ?>
 
             </table>
-            <a class="btn btn-info" href="teacher-list.php">回到教師頁面</a>
-            <a class="btn btn-info" type="submit" href="teacher-edit.php?teacher_id=<?= $row["teacher_id"]?>">編輯</a>
+            <a class="btn btn-info" href="teacher-list.php">回到教師清單</a>
+            <a class="btn btn-info" type="submit" href="teacher-edit.php?teacher_id=<?= $row["teacher_id"]?>">編輯教師資訊</a>
           
         </div>
   </div>
