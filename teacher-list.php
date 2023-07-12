@@ -8,7 +8,7 @@ $page=$_GET["page"] ?? 1;
 
 require_once("../db_connect.php");
 
-$sql="SELECT coffseeker_teachers.* FROM coffseeker_teachers";
+$sql="SELECT coffseeker_teachers.* FROM coffseeker_teachers WHERE valid=1";
 $resultTotal=$conn->query($sql);//all the types of results selected
 $totalUser=$resultTotal->num_rows;//total amount of selected teachers
 
@@ -86,9 +86,10 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>ID</th>
                     <th>姓名</th>
                     <th>電話</th>
+                    <th>性別</th>
                     <th>email</th>
                     <th>教師資格</th>
                     <th>教師年資</th>
@@ -101,6 +102,7 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
                         <td><?= $row["teacher_id"] ?></td>
                         <td><?= $row["teacher_name"] ?></td>
                         <td><?= $row["teacher_phone"] ?></td>
+                        <td><?= $row["teacher_gender"] ?></td>
                         <td><?= $row["teacher_mail"] ?></td>
                         <td><?= $row["teacher_qualification"] ?></td>
                         <td><?= $row["teacher_experience"] ?></td>
