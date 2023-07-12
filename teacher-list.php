@@ -8,7 +8,7 @@ $page=$_GET["page"] ?? 1;
 
 require_once("../db_connect.php");
 
-$sql="SELECT coffseeker_teachers.* FROM coffseeker_teachers";
+$sql="SELECT coffseeker_teachers.* FROM coffseeker_teachers WHERE valid=1";
 $resultTotal=$conn->query($sql);//all the types of results selected
 $totalUser=$resultTotal->num_rows;//total amount of selected teachers
 
@@ -17,8 +17,12 @@ $idPageStart=($page-1)*$idPerPage;
 
 $totalPage=ceil($totalUser/$idPerPage);
 
-$idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $idPageStart,$idPerPage"
+$idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers WHERE valid=1 LIMIT $idPageStart,$idPerPage";
+$result=$conn->query($idPerPageLimit);
+// $rows = $result->fetch_all(MYSQLI_ASSOC);
 
+
+// var_dump($idPerPageLimit);
 
 
 //id auto substitution awaiting to be set
@@ -59,7 +63,7 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
         <div class="py-2 d-flex justify-content-between align-items-center">
             <a class="btn btn-info" href="teacher-create.php">新增</a>
             <div>
-                <!-- 共 <?= $totalUser ?> 人, 第 <?= $page ?> 頁 -->
+                共 <?= $totalUser ?> 人, 第 <?= $page ?> 頁
             </div>
         </div>
         <div class="py-2 d-flex justify-content-end">
@@ -79,16 +83,17 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
             </div> -->
         </div>
         <?php
-        $rows = $resultTotal->fetch_all(MYSQLI_ASSOC);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
         // var_dump($rows);
         // exit;
         ?>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>ID</th>
                     <th>姓名</th>
                     <th>電話</th>
+                    <th>性別</th>
                     <th>email</th>
                     <th>教師資格</th>
                     <th>教師年資</th>
@@ -101,6 +106,7 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
                         <td><?= $row["teacher_id"] ?></td>
                         <td><?= $row["teacher_name"] ?></td>
                         <td><?= $row["teacher_phone"] ?></td>
+                        <td><?= $row["teacher_gender"] ?></td>
                         <td><?= $row["teacher_mail"] ?></td>
                         <td><?= $row["teacher_qualification"] ?></td>
                         <td><?= $row["teacher_experience"] ?></td>
@@ -117,7 +123,7 @@ $idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers LIMIT $id
                 <?php for($i=1; $i<=$totalPage; $i++): ?>
                 <li class="page-item <?php
                     if($i==$page)echo "active";
-                    ?>"><a class="page-link " href="user-list.php?page=<?=$i?>&type=<?=$type?>"><?=$i?></a></li>
+                    ?>"><a class="page-link " href="teacher-list.php?page=<?=$i?>&type=<?=$type?>"><?=$i?></a></li>
                 <?php endfor; ?>
             </ul>
         </nav>

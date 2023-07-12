@@ -1,8 +1,10 @@
 <?php
 
+$id = $_GET["teacher_id"];
+
 require_once("../db_connect.php");
 
-$id = $_GET["teacher_id"];
+
 
 $sql = "SELECT * FROM coffseeker_teachers WHERE teacher_id=$id";
 $result = $conn->query($sql);
@@ -31,43 +33,80 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 
 <body>
+    <!-- modal start -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <h4>確定要刪除嗎?</h4>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                        <a href="doDelete.php?teacher_id=<?= $id ?>" class="btn btn-danger">刪除教師</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- modal end -->
     <div class="container">
-    <form action="doEdit.php" class="form" method="post">
-        <h2>教師資訊</h2>
-        <table class="table table-bordered">
-            <?php foreach ($rows as $row) : ?>
-                <tr>
-                    <th>ID</th>
-                    <td><?= $row["teacher_id"] ?></td>
-                </tr>
-                <tr>
-                    <th>姓名</th>
-                    <td><input id="name" class="form-control" name="teacher_name" value="<?= $row["teacher_name"] ?>"></td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td><input id="email" class="form-control" name="teacher_mail" value="<?= $row["teacher_mail"] ?>"></td>
-                </tr>
-                <tr>
-                    <th>電話號碼</th>
-                    <td><input id="phone" class="form-control" name="teacher_phone" value="<?= $row["teacher_phone"] ?>"></td>
-                </tr>
-                <tr>
-                    <th>教師資格</th>
-                    <td><input id="teacher_qualification" class="form-control" name="teacher_qualification" value="<?= $row["teacher_qualification"] ?>"></td>
-                </tr>
-                <tr>
-                    <th>教師年資</th>
-                    <td><input id="teacher_experience" class="form-control" name="teacher_experience" value="<?= $row["teacher_experience"] ?>"></td>
-                </tr>
-                <tr>
-                    <th>教師專長</th>
-                    <td><input id="teacher_specialty" class="form-control" name="teacher_specialty" value="<?= $row["teacher_specialty"] ?>"></td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-        <button type="submit" class="btn btn-info">送出</button>
-    </form>
+        <form action="doEdit.php" class="form" method="post">
+            <h2>教師資訊</h2>
+            <table class="table table-bordered">
+                <?php foreach ($rows as $row) : ?>
+                    <tr>
+                        <input type="hidden" name="teacher_id" value="<?= $row["teacher_id"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>姓名</th>
+                        <td><input id="name" class="form-control" name="teacher_name" value="<?= $row["teacher_name"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>性別</th>
+                        <td><input id="name" class="form-control" name="teacher_gender" value="<?= $row["teacher_gender"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><input id="email" class="form-control" name="teacher_mail" value="<?= $row["teacher_mail"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>電話號碼</th>
+                        <td><input id="phone" class="form-control" name="teacher_phone" value="<?= $row["teacher_phone"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>教師資格</th>
+                        <td><input id="teacher_qualification" class="form-control" name="teacher_qualification" value="<?= $row["teacher_qualification"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>教師年資</th>
+                        <td><input id="teacher_experience" class="form-control" name="teacher_experience" value="<?= $row["teacher_experience"] ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>教師專長</th>
+                        <td><input id="teacher_specialty" class="form-control" name="teacher_specialty" value="<?= $row["teacher_specialty"] ?>"></td>
+                    </tr>
+                <?php endforeach; ?>
+
+            </table>
+            <div class="d-flex justify-content-between">
+            <div>
+            <button type="submit" class="btn btn-info">送出</button>
+            <a href="teacher-list.php" class="btn btn-info">取消</a>
+            </div>
+            
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">刪除教師</button>
+            </div>
+            
+        </form>
+        
+
     </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

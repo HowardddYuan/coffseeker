@@ -18,11 +18,18 @@ $now = date('Y-m-d H:i:s');
 
 $sql = "INSERT INTO coffseeker_teachers (teacher_name, teacher_phone, teacher_gender, teacher_mail, teacher_qualification, teacher_experience, teacher_specialty, created_at ) VALUES ('$name', '$phone', '$gender', '$mail', '$qualification', '$experience','$specialty','$now')";
 
-if ($conn->query($sql) === TRUE) {
-    $latestId = $conn->insert_id;
-    echo "教師新增完成";
-} else {
-    echo "新增失敗" . $conn->error;
+if(empty($name)||empty($phone)||empty($gender)||empty($mail)||empty($qualification)||empty($experience)||empty($specialty)){
+    echo '<div style="color: red;">請填寫所有必填欄位</div>';
+}else{
+    if ($conn->query($sql) === TRUE) {
+        $latestId = $conn->insert_id;
+        echo "教師新增完成";
+    } else {
+        echo "新增失敗" . $conn->error;
+    }
 }
+
+
+
 
 $conn->close();

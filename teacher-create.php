@@ -30,12 +30,12 @@
         <div class="mb-2">
             <label for="">性別</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="teacher_gender" value="男">
-                <label class="form-check-label" for="">男性</label>
+                <input id="male" class="form-check-input" type="radio" name="teacher_gender" value="男">
+                <label class="form-check-label" for="male">男性</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="teacher_gender" value="女">
-                <label class="form-check-label" for="">女性</label>
+                <input id="female" class="form-check-input" type="radio" name="teacher_gender" value="女">
+                <label class="form-check-label" for="female">女性</label>
             </div>
         </div>
         <div class="mb-2">
