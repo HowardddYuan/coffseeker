@@ -19,5 +19,3 @@ if($conn->query($sql)==TRUE){
 }else{
     echo "修改資料錯誤" . $conn->error;
 };
-
-$conn->close();
