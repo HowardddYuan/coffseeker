@@ -3,12 +3,20 @@
 //refer to user/user-list.php
 
 $page=$_GET["page"] ?? 1;
-// $type=$_GET["type"] ?? 1;  //unfinished orders setting
+$type=$_GET["type"] ?? 1;  //unfinished orders setting
 
+
+$sqlSearch="SELECT teacher_id FROM coffseeker_teachers WHERE valid=1 ";
 
 require_once("../db_connect.php");
 
-$sql="SELECT coffseeker_teachers.* FROM coffseeker_teachers WHERE valid=1";
+if($type==1){
+    $order="ORDER BY teacher_id ASC";
+}elseif($type==2){
+    $order="ORDER BY teacher_id DESC";
+}
+
+$sql="SELECT coffseeker_teachers.teacher_id FROM coffseeker_teachers WHERE valid=1";
 $resultTotal=$conn->query($sql);//all the types of results selected
 $totalUser=$resultTotal->num_rows;//total amount of selected teachers
 
@@ -17,12 +25,11 @@ $idPageStart=($page-1)*$idPerPage;
 
 $totalPage=ceil($totalUser/$idPerPage);
 
-$idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers WHERE valid=1 LIMIT $idPageStart,$idPerPage";
+$idPerPageLimit="SELECT coffseeker_teachers.* FROM coffseeker_teachers WHERE valid=1 $order LIMIT $idPageStart,$idPerPage";
 $result=$conn->query($idPerPageLimit);
-// $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 
-// var_dump($idPerPageLimit);
+
 
 
 //id auto substitution awaiting to be set
@@ -39,6 +46,7 @@ $result=$conn->query($idPerPageLimit);
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -67,20 +75,10 @@ $result=$conn->query($idPerPageLimit);
             </div>
         </div>
         <div class="py-2 d-flex justify-content-end">
-            <!-- <div class="btn-group">
-                <a href="user-list.php?page=<?= $page ?>&type=1" class="btn btn-info <?php
-                if($type==1)echo "active";
-                ?>">id <i class="fa-solid fa-arrow-down-short-wide"></i></a>
-                <a href="user-list.php?page=<?= $page ?>&type=2" class="btn btn-info <?php
-                if($type==2)echo "active";
-                ?>">id <i class="fa-solid fa-arrow-down-wide-short"></i></i></a>
-                <a href="user-list.php?page=<?= $page ?>&type=3" class="btn btn-info <?php
-                if($type==3)echo "active";
-                ?>">姓名 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
-                <a href="user-list.php?page=<?= $page ?>&type=4" class="btn btn-info <?php
-                if($type==4)echo "active";
-                ?>">姓名 <i class="fa-solid fa-arrow-down-wide-short"></i></i></a>
-            </div> -->
+            <div>
+                <a class="btn btn-info" href="teacher-list.php?page=<?=$page?>&type=1"><i class="fa-solid fa-arrow-down-wide-short"></i></a>
+                <a class="btn btn-info" href="teacher-list.php?page=<?=$page?>&type=2"><i class="fa-solid fa-arrow-up-short-wide"></i></a>
+            </div>
         </div>
         <?php
         $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -135,6 +133,9 @@ $result=$conn->query($idPerPageLimit);
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+  <script>
+
   </script>
 </body>
 
