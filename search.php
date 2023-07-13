@@ -5,16 +5,17 @@ if(isset($_GET["name"])){
     require_once("../db_connect.php");
 
     if(!empty($_GET["name"])){
-        $sql="SELECT teacher_name FROM coffseeker_teachers WHERE teacher_name LIKE '%$name%'";
+        $sql="SELECT * FROM coffseeker_teachers WHERE valid=1 AND teacher_name LIKE '%$name%'";
         $result=$conn->query($sql);
-        $filtered=$result->num_rows;
+        $filteredAll=$result->num_rows;
+        $filterEach=$result->fetch_all(MYSQLI_ASSOC);
     }else{
         $filtered=0;
     }
     }
     
 
-
+    
 
 
 
@@ -37,7 +38,7 @@ if(isset($_GET["name"])){
 <body>
 <div class="container">
         <div class="py-2">
-            <a class="btn btn-info" href="user-list.php">回使用者列表</a>
+            <a class="btn btn-info" href="teacher-list.php">回使用者列表</a>
         </div>
         <div class="py-2">
             <form action="search.php">
@@ -54,11 +55,11 @@ if(isset($_GET["name"])){
         <div class="py-2 d-flex justify-content-between align-items-center">
             <?php if(isset($_GET["name"])): ?>
             <div>
-                搜尋 <?=$name?> 的結果, 共有 <?= $filtered ?> 筆符合的資料
+                搜尋 <?=$name?> 的結果, 共有 <?= $filteredAll ?> 筆符合的資料
             </div>
             <?php endif; ?>
         </div>
-        <?php if ($filtered != 0) : ?>
+        <?php if ($filteredAll != 0) : ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -74,15 +75,18 @@ if(isset($_GET["name"])){
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($rows as $row) : ?>
+                    <?php foreach ($filterEach as $row) : ?>
                         <tr>
                             <td><?= $row["teacher_id"] ?></td>
                             <td><?= $row["teacher_name"] ?></td>
                             <td><?= $row["teacher_phone"] ?></td>
                             <td><?= $row["teacher_gender"] ?></td>
-                            <td><?= $row["teacher_email"] ?></td>
+                            <td><?= $row["teacher_mail"] ?></td>
+                            <td><?= $row["teacher_qualification"] ?></td>
+                            <td><?= $row["teacher_experience"] ?></td>
+                            <td><?= $row["teacher_specialty"] ?></td>
                             <td>
-                                <a href="user.php?id=<?= $row["id"] ?>" class="btn btn-info">顯示</a>
+                                <a href="teacher-detail.php?teacher_id=<?= $row["teacher_id"] ?>" class="btn btn-info">顯示</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
