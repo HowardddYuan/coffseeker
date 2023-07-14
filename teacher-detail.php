@@ -52,6 +52,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
               <td><span id="phone"><?= $row["teacher_phone"] ?></span></td>
             </tr>
             <tr>
+              <th>性別</th>
+              <td><span id="phone"><?= $row["teacher_gender"] ?></span></td>
+            </tr>
+            <tr>
               <th>教師資格</th>
               <td><span id="teacher_qualification"><?= $row["teacher_qualification"] ?></span></td>
             </tr>

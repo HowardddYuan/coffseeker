@@ -70,7 +70,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     </tr>
                     <tr>
                         <th>性別</th>
-                        <td><input id="name" class="form-control" name="teacher_gender" value="<?= $row["teacher_gender"] ?>"></td>
+                        <td><span id="name" name="teacher_gender" value="<?= $row["teacher_gender"] ?>"><?= $row["teacher_gender"] ?></td>
                     </tr>
                     <tr>
                         <th>Email</th>
@@ -98,7 +98,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <div class="d-flex justify-content-between">
             <div>
             <button type="submit" class="btn btn-info">送出</button>
-            <a href="teacher-list.php" class="btn btn-info">取消</a>
+            <a href="teacher-list.php" class="btn btn-info">回到教師清單</a>
             </div>
             
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">刪除教師</button>

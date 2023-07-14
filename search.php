@@ -10,8 +10,10 @@ if(isset($_GET["name"])){
         $filteredAll=$result->num_rows;
         $filterEach=$result->fetch_all(MYSQLI_ASSOC);
     }else{
-        $filtered=0;
+        $filteredAll=0;
     }
+
+
     }
     
 

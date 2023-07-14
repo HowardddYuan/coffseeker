@@ -21,11 +21,11 @@
         </div>
         <div class="mb-2">
             <label for="">電話號碼</label>
-            <input type="tel" class="form-control" name="teacher_phone">
+            <input type="tel" class="form-control"  name="teacher_phone">
         </div>
         <div class="mb-2">
             <label for="">電子郵件</label>
-            <input type="email" class="form-control" name="teacher_mail" placeholder="">
+            <input type="email" class="form-control" name="teacher_mail"  placeholder="">
         </div>
         <div class="mb-2">
             <label for="">性別</label>
@@ -44,14 +44,21 @@
         </div>
         <div class="mb-2">
             <label for="">教學年資</label>
-            <input type="number" class="form-control" name="teacher_experience" min="0">
+            <div>
+            <input type="number" class="form-control col-10" name="teacher_experience" min="0">
+            <span class="col-2">年</span>
+            </div>
+            
         </div>
         <div class="mb-2">
             <label for="">教師專長</label>
             <input type="text" class="form-control" name="teacher_specialty" placeholder="">
         </div>
-
+        <div class="d-flex justify-content-end">
         <button class="btn btn-info" type="submit">送出</button>
+        <a class="btn btn-danger ms-5" href="teacher-list.php">取消</a>
+        </div>
+        
     </form>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -59,6 +66,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
+    
 </body>
 
 </html>
