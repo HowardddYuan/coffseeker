@@ -17,7 +17,7 @@
     <form action="doCreate.php" method="post" class="col-4 mx-auto bordered mt-5">
         <div class="mb-2">
             <label for="">姓名</label>
-            <input type="text" class="form-control" name="teacher_name">
+            <input type="text" class="form-control" name="teacher_name" minlength="2">
         </div>
         <div class="mb-2">
             <label for="">電話號碼</label>
