@@ -16,19 +16,20 @@
     <h1 class="mx-auto col-4 mt-5">教師新增頁面</h1>
     <form action="doCreate.php" method="post" class="col-4 mx-auto bordered mt-5">
         <div class="mb-2">
-            <label for="">姓名</label>
-            <input type="text" class="form-control" name="teacher_name" minlength="2">
+            <label for="name" class="fw-bold">姓名</label>
+            <input type="text" id="name" class="form-control" name="teacher_name" minlength="2">
+
         </div>
         <div class="mb-2">
-            <label for="">電話號碼</label>
-            <input type="tel" class="form-control"  name="teacher_phone">
+            <label for="phone" class="fw-bold">電話號碼</label>
+            <input type="tel" id="phone" class="form-control" name="teacher_phone">
         </div>
         <div class="mb-2">
-            <label for="">電子郵件</label>
-            <input type="email" class="form-control" name="teacher_mail"  placeholder="">
+            <label for="mail" class="fw-bold">電子郵件</label>
+            <input type="email" id="mail" class="form-control" name="teacher_mail" placeholder="">
         </div>
-        <div class="mb-2">
-            <label for="">性別</label>
+        <div class="mb-2" class="fw-bold">
+            <label for="" class="fw-bold">性別</label>
             <div class="form-check">
                 <input id="male" class="form-check-input" type="radio" name="teacher_gender" value="男" required>
                 <label class="form-check-label" for="male">男性</label>
@@ -39,26 +40,41 @@
             </div>
         </div>
         <div class="mb-2">
-            <label for="">教師資格</label>
-            <input type="text" class="form-control" name="teacher_qualification" placeholder="">
+            <label for="" class="fw-bold">教師資格</label>
+            <br>
+            <!-- <input type="text" class="form-control" name="teacher_qualification" placeholder=""> -->
+            <input type="checkbox" id="option1" name="teacher_qualification[]" value="咖啡師證照">
+            <label for="option1">咖啡師證照</label>
+
+            <input type="checkbox" id="option2" name="teacher_qualification[]" value="咖啡品鑑師">
+            <label for="option2">咖啡品鑑師</label>
+
+            <input type="checkbox" id="option3" name="teacher_qualification[]" value="咖啡萃取師">
+            <label for="option3">咖啡萃取師</label>
+            <input type="checkbox" id="option4" name="teacher_qualification[]" value="咖啡烘焙師">
+            <label for="option4">咖啡烘焙師</label>
+            <br>
+            <label for="option5" class="mt-3">其他:</label>
+            <br>
+            <textarea name="teacher_qualification[]" id="option6" style="height:18px,width=140px"></textarea>
+
         </div>
         <div class="mb-2">
-            <label for="">教學年資</label>
+            <label for="qualification" class="fw-bold">教學年資(單位:年)</label>
             <div>
-            <input type="number" class="form-control col-10" name="teacher_experience" min="0">
-            <span class="col-2">年</span>
+                <input id="qualification" type="number" class="form-control col-10" name="teacher_experience" min="0">
             </div>
-            
+
         </div>
         <div class="mb-2">
-            <label for="">教師專長</label>
-            <input type="text" class="form-control" name="teacher_specialty" placeholder="">
+            <label for="specialty" class="fw-bold">教師專長</label>
+            <input type="text" id="specialty" class="form-control" name="teacher_specialty" placeholder="">
         </div>
         <div class="d-flex justify-content-end">
-        <button class="btn btn-info" type="submit">送出</button>
-        <a class="btn btn-danger ms-5" href="teacher-list.php">取消</a>
+            <button class="btn btn-info" type="submit">送出</button>
+            <a class="btn btn-danger ms-5" href="teacher-list.php">取消</a>
         </div>
-        
+
     </form>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -66,7 +82,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-    
+
 </body>
 
 </html>

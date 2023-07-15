@@ -70,7 +70,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     </tr>
                     <tr>
                         <th>性別</th>
-                        <td><span id="name" name="teacher_gender" value="<?= $row["teacher_gender"] ?>"><?= $row["teacher_gender"] ?></td>
+                        <td><span id="name" name="teacher_gender" value="<?= $row["teacher_gender"] ?>"><?= $row["teacher_gender"] ?>
+                    </span>
+                    <input type="hidden" name="teacher_gender" value="<?= $row["teacher_gender"] ?>">
+                        </td>
                     </tr>
                     <tr>
                         <th>Email</th>
