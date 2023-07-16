@@ -17,16 +17,16 @@
     <form action="doCreate.php" method="post" class="col-4 mx-auto bordered mt-5">
         <div class="mb-2">
             <label for="name" class="fw-bold">姓名</label>
-            <input type="text" id="name" class="form-control" name="teacher_name" minlength="2">
+            <input type="text" id="name" class="form-control" name="teacher_name" minlength="2" required>
 
         </div>
         <div class="mb-2">
             <label for="phone" class="fw-bold">電話號碼</label>
-            <input type="tel" id="phone" class="form-control" name="teacher_phone">
+            <input id="phone" class="form-control" name="teacher_phone" required>
         </div>
         <div class="mb-2">
             <label for="mail" class="fw-bold">電子郵件</label>
-            <input type="email" id="mail" class="form-control" name="teacher_mail" placeholder="">
+            <input  id="mail" class="form-control" name="teacher_mail" placeholder="" required>
         </div>
         <div class="mb-2" class="fw-bold">
             <label for="" class="fw-bold">性別</label>
@@ -56,19 +56,19 @@
             <br>
             <label for="option5" class="mt-3">其他:</label>
             <br>
-            <textarea name="teacher_qualification[]" id="option6" style="height:18px,width=140px"></textarea>
+            <input name="teacher_qualification[]" id="option6" style="height:18px,width=140px"></input >
 
         </div>
         <div class="mb-2">
             <label for="qualification" class="fw-bold">教學年資(單位:年)</label>
             <div>
-                <input id="qualification" type="number" class="form-control col-10" name="teacher_experience" min="0">
+                <input id="qualification" type="number" class="form-control col-10" name="teacher_experience" min="0" required>
             </div>
 
         </div>
         <div class="mb-2">
             <label for="specialty" class="fw-bold">教師專長</label>
-            <input type="text" id="specialty" class="form-control" name="teacher_specialty" placeholder="">
+            <input type="text" id="specialty" class="form-control" name="teacher_specialty" placeholder="" required>
         </div>
         <div class="d-flex justify-content-end">
             <button class="btn btn-info" type="submit">送出</button>
