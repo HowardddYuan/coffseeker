@@ -26,7 +26,7 @@
         </div>
         <div class="mb-2">
             <label for="mail" class="fw-bold">電子郵件</label>
-            <input  id="mail" class="form-control" name="teacher_mail" placeholder="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+            <input type="email" id="mail" class="form-control" name="teacher_mail" placeholder="" pattern="/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/" required>
         </div>
         <div class="mb-2" class="fw-bold">
             <label for="" class="fw-bold">性別</label>
