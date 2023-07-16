@@ -22,11 +22,11 @@
         </div>
         <div class="mb-2">
             <label for="phone" class="fw-bold">電話號碼</label>
-            <input id="phone" class="form-control" name="teacher_phone" required>
+            <input id="phone" class="form-control" name="teacher_phone" pattern="\d{10}" required >
         </div>
         <div class="mb-2">
             <label for="mail" class="fw-bold">電子郵件</label>
-            <input  id="mail" class="form-control" name="teacher_mail" placeholder="" required>
+            <input  id="mail" class="form-control" name="teacher_mail" placeholder="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
         </div>
         <div class="mb-2" class="fw-bold">
             <label for="" class="fw-bold">性別</label>

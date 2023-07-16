@@ -16,9 +16,11 @@ $now = date('Y-m-d H:i:s');
 
 $teacher_qualification_arr = array();
 $teacher_qualification_arr=$_POST["teacher_qualification"];
+array_filter($teacher_qualification_arr);
 $length = count($teacher_qualification_arr);
+var_dump($teacher_qualification_arr);
 
-if($length>1){
+if($length>=1){
   $qualification_str = implode(", ", $teacher_qualification_arr);
 }else{
   die ("請填入相關資訊");
