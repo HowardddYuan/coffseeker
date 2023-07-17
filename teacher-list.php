@@ -75,7 +75,7 @@ $result=$conn->query($idPerPageLimit);
         $user_count = $result->num_rows;
         ?> -->
         <div class="py-2 d-flex justify-content-between align-items-center">
-            <a class="btn btn-info" href="teacher-create.php">新增</a>
+            <a class="btn btn-info" href="teacher-create.php"><i class="fa-solid fa-user-plus"></i>新增教師</a>
             <div>
                 共 <?= $totalUser ?> 人, 第 <?= $page ?> 頁
             </div>
