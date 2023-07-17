@@ -34,7 +34,7 @@ if ($length >= 1) {
 
 
 
-$sql = "INSERT INTO coffseeker_teachers (teacher_name, teacher_phone, teacher_gender, teacher_mail,  teacher_experience, teacher_specialty, created_at,valid,teacher_qualification ) VALUES ('$name', '$phone', '$gender', '$mail',  '$experience','$specialty','$now', 1,'$qualification_str')";
+$sql = "INSERT INTO coffseeker_teachers (teacher_img, teacher_name, teacher_phone, teacher_gender, teacher_mail,  teacher_experience, teacher_specialty, created_at,valid,teacher_qualification ) VALUES ('$imgFile','$name', '$phone', '$gender', '$mail',  '$experience','$specialty','$now', 1,'$qualification_str')";
 
 $duplication = "SELECT * FROM coffseeker_teachers WHERE teacher_mail='$mail' OR teacher_phone='$phone'";
 
@@ -45,38 +45,59 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 
+// if ($_FILES["teacher_img"]["error"] == 0) {
+//   move_uploaded_file($_FILES["teacher_img"]["tmp_name"], $path . $imgFile);
+// } else {
+//   $imgFile = "";
+// }
+
+$sql = "INSERT INTO coffseeker_teachers (teacher_name, teacher_phone, teacher_gender, teacher_mail, teacher_experience, teacher_specialty, teacher_img, created_at, valid, teacher_qualification) 
+        VALUES ('$name', '$phone', '$gender', '$mail', '$experience', '$specialty', '$imgFile', '$now', 1, '$qualification_str')";
+
 if ($conn->query($sql) === TRUE) {
   $latestId = $conn->insert_id;
-  // echo "教師新增完成";
-  // echo '<a class="btn btn-info" href="teacher-list.php">回到首頁</a>';
+  if ($_FILES["teacher_img"]["error"] == 0) {
+    move_uploaded_file($_FILES["teacher_img"]["tmp_name"], $path . $imgFile);
+  } else {
+    $imgFile = "";
+  }
+  echo "教師新增完成";
+  echo '<a class="btn btn-info" href="teacher-list.php">回到首頁</a>';
 } else {
   echo "新增失敗" . $conn->error;
   die;
 }
 
-if($_FILES["teacher_img"]["error"]==0){
-  if(file_exists($path . $imgFile)){
-    $sqlImage="INSERT INTO coffseeker_teachers (teacher_img) VALUES ('$imgFile')";
-      if($conn->query($sqlImage) === TRUE){
-          // header("location:teacher-list.php");
-          echo '已成功編輯'. '<a href="teacher-list.php" class="btn btn-info">回到教師清單</a>';
-      }else{
-          echo "修改資料錯誤" . $conn->error;
-          die;
-      };
-  } else {
-      move_uploaded_file($_FILES["teacher_img"]["tmp_name"],$path . $imgFile);
-      $sqlImage="INSERT INTO coffseeker_teachers (teacher_img) VALUES ('$imgFile')";
-      if($conn->query($sqlImage) === TRUE){
-          // header("location:teacher-list.php");
-          header("location : teacher-detail.php");
-      }else{
-          echo "修改資料錯誤" . $conn->error;
-      };
-  }
-} else {
-  var_dump($_FILES["icon"]["error"]);
-}
+
+// if ($conn->query($sql) === TRUE) {
+//   $latestId = $conn->insert_id;
+//   if($_FILES["teacher_img"]["error"]==0){
+//     if(file_exists($path . $imgFile)){
+//       $sqlImage="INSERT INTO coffseeker_teachers (teacher_img) VALUES ('$imgFile')";
+//         if($conn->query($sqlImage) === TRUE){
+//             // header("location:teacher-list.php");
+//             echo '已成功編輯'. '<a href="teacher-list.php" class="btn btn-info">回到教師清單</a>';
+//         }else{
+//             echo "修改資料錯誤" . $conn->error;
+//             die;
+//         };
+//     } else {
+//         move_uploaded_file($_FILES["teacher_img"]["tmp_name"],$path . $imgFile);
+//         $sqlImage="INSERT INTO coffseeker_teachers (teacher_img) VALUES ('$imgFile')";
+//         if($conn->query($sqlImage) === TRUE){
+//             // header("location:teacher-list.php");
+//             header("location : teacher-detail.php");
+//         }else{
+//             echo "修改資料錯誤" . $conn->error;
+//         };
+//     }
+//   } else {
+//     var_dump($_FILES["teacher_img"]["error"]);
+//   }
+// } else {
+//   echo "新增失敗" . $conn->error;
+//   die;
+// }
 
 $conn->close();
 ?>

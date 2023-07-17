@@ -36,7 +36,7 @@ if($_FILES["teacher_img"]["error"]==0){
         };
     }
 } else {
-    var_dump($_FILES["icon"]["error"]);
+    var_dump($_FILES["teacher_img"]["error"]);
 }
 
 
