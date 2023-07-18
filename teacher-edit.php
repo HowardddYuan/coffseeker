@@ -22,7 +22,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <html lang="en">
 
 <head>
-    <title>教師編輯</title>
+    <title>編輯教師編輯</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,35 +35,44 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <body>
     <!-- modal start -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <h4>確定要刪除嗎?</h4>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                        <a href="doDelete.php?teacher_id=<?= $id ?>" class="btn btn-danger">刪除教師</a>
-                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <h4>確定要刪除嗎?</h4>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <a href="doDelete.php?teacher_id=<?= $id ?>" class="btn btn-danger">刪除教師</a>
                 </div>
             </div>
         </div>
+    </div>
     <!-- modal end -->
     <div class="container">
-        <form action="doEdit.php" class="form" method="post">
-            <h2>教師資訊</h2>
+        <form action="doEdit.php" class="form" method="post" enctype="multipart/form-data">
+            <h2>編輯教師資訊</h2>
             <table class="table table-bordered">
                 <?php foreach ($rows as $row) : ?>
                     <tr>
-                        <input type="hidden" name="teacher_id" value="<?= $row["teacher_id"] ?>"></td>
+                        <th>頭像</th>
+                        <td class="">
+                            <img class="object-fit-cover mw-100 overflow-hidden w-25 mb-3" src="/coffseeker/teacher-img/<?= $row["teacher_img"] ?>" alt="">
+                            <input type="file" name="teacher_img" accept="image/jpeg, image/png, image/gif, image/webp">
+
+                        </td>
                     </tr>
+                    <tr>
+                        <input type="hidden" name="teacher_id" value="<?= $row["teacher_id"] ?>">
+                    </tr>
+
                     <tr>
                         <th>姓名</th>
                         <td><input id="name" class="form-control" name="teacher_name" value="<?= $row["teacher_name"] ?>"></td>
@@ -71,8 +80,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <tr>
                         <th>性別</th>
                         <td><span id="name" name="teacher_gender" value="<?= $row["teacher_gender"] ?>"><?= $row["teacher_gender"] ?>
-                    </span>
-                    <input type="hidden" name="teacher_gender" value="<?= $row["teacher_gender"] ?>">
+                            </span>
+                            <input type="hidden" name="teacher_gender" value="<?= $row["teacher_gender"] ?>">
                         </td>
                     </tr>
                     <tr>
@@ -99,16 +108,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
             </table>
             <div class="d-flex justify-content-between">
-            <div>
-            <button type="submit" class="btn btn-info">送出</button>
-            <a href="teacher-list.php" class="btn btn-info">回到教師清單</a>
+                <div>
+                    <button type="submit" class="btn btn-info">送出</button>
+                    <a href="teacher-list.php" class="btn btn-info">回到教師清單</a>
+                </div>
+
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">刪除教師</button>
             </div>
-            
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">刪除教師</button>
-            </div>
-            
+
         </form>
-        
+
 
     </div>
     <!-- Bootstrap JavaScript Libraries -->

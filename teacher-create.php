@@ -14,7 +14,7 @@
 
 <body>
     <h1 class="mx-auto col-4 mt-5">教師新增頁面</h1>
-    <form action="doCreate.php" method="post" class="col-4 mx-auto bordered mt-5">
+    <form action="doCreate.php" method="post" class="col-4 mx-auto bordered mt-5" enctype="multipart/form-data">
         <div class="mb-2">
             <label for="name" class="fw-bold">姓名</label>
             <input type="text" id="name" class="form-control" name="teacher_name" minlength="2" required>
@@ -22,7 +22,7 @@
         </div>
         <div class="mb-2">
             <label for="phone" class="fw-bold">電話號碼</label>
-            <input id="phone" class="form-control" name="teacher_phone" pattern="\d{10}" required >
+            <input id="phone" class="form-control" name="teacher_phone" pattern="\d{10}" required>
         </div>
         <div class="mb-2">
             <label for="mail" class="fw-bold">電子郵件</label>
@@ -56,7 +56,7 @@
             <br>
             <label for="option5" class="mt-3">其他:</label>
             <br>
-            <input name="teacher_qualification[]" id="option6" style="height:18px,width=140px"></input >
+            <input name="teacher_qualification[]" id="option6" style="height:18px,width=140px"></input>
 
         </div>
         <div class="mb-2">
@@ -66,9 +66,17 @@
             </div>
 
         </div>
+
         <div class="mb-2">
             <label for="specialty" class="fw-bold">教師專長</label>
             <input type="text" id="specialty" class="form-control" name="teacher_specialty" placeholder="" required>
+        </div>
+        <div class="mb-2">
+            <label for="teacher_img" class="fw-bold">選擇頭像</label>
+            <div>
+                <input type="file" class="form-control col-10" name="teacher_img" accept="image/jpeg, image/png, image/gif, image/webp">
+            </div>
+
         </div>
         <div class="d-flex justify-content-end">
             <button class="btn btn-info" type="submit">送出</button>

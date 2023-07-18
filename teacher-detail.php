@@ -10,6 +10,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 // print_r($rows);
 
+$sqlImages="SELECT * FROM coffseeker_teachers WHERE teacher_id=$id ";
+$resultImages=$conn->query($sqlImages);
+$productImages=$resultImages->fetch_all(MYSQLI_ASSOC);
 
 
 ?>
@@ -30,55 +33,64 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <body>
   <div class="container">
     <div class="py-2">
-
       <h2>教師資訊</h2>
-      <table class="table table-bordered">
-        <?php foreach ($rows as $row) : ?>
-          <?php if ($row["teacher_id"]) : ?>
-            <tr>
-              <th>ID</th>
-              <td><span id=""><?= $row["teacher_id"] ?></span></td>
-            </tr>
-            <tr>
-              <th>姓名</th>
-              <td><span id="name"><?= $row["teacher_name"] ?></span></td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td><span id="email"><?= $row["teacher_mail"] ?></span></td>
-            </tr>
-            <tr>
-              <th>電話號碼</th>
-              <td><span id="phone"><?= $row["teacher_phone"] ?></span></td>
-            </tr>
-            <tr>
-              <th>性別</th>
-              <td><span id="phone"><?= $row["teacher_gender"] ?></span></td>
-            </tr>
-            <tr>
-              <th>教師資格</th>
-              <td><span id="teacher_qualification"><?= $row["teacher_qualification"] ?></span></td>
-            </tr>
-            <tr>
-              <th>教師年資</th>
-              <td><span id="teacher_experience"><?= $row["teacher_experience"] ?></span></td>
-            </tr>
-            <tr>
-              <th>教師專長</th>
-              <td><span id="teacher_specialty"><?= $row["teacher_specialty"] ?></span></td>
-            </tr>
-          <?php endif; ?>
+      <div class="d-flex mt-5 justify-content-around">
+        <?php foreach ($productImages as $image) : ?>
+          <div class="col-5 overflow-hidden" style="height:330px">
+            <img class="object-fit-cover mw-100" src="/coffseeker/teacher-img/<?= $image["teacher_img"]?>" alt="">
+
+          </div>
         <?php endforeach; ?>
+        <div class="col-5">
+          <table class="table table-bordered">
+            <?php foreach ($rows as $row) : ?>
+              <?php if ($row["teacher_id"]) : ?>
+                <tr>
+                  <th>ID</th>
+                  <td><span id=""><?= $row["teacher_id"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>姓名</th>
+                  <td><span id="name"><?= $row["teacher_name"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td><span id="email"><?= $row["teacher_mail"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>電話號碼</th>
+                  <td><span id="phone"><?= $row["teacher_phone"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>性別</th>
+                  <td><span id="phone"><?= $row["teacher_gender"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>教師資格</th>
+                  <td><span id="teacher_qualification"><?= $row["teacher_qualification"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>教師年資</th>
+                  <td><span id="teacher_experience"><?= $row["teacher_experience"] ?></span></td>
+                </tr>
+                <tr>
+                  <th>教師專長</th>
+                  <td><span id="teacher_specialty"><?= $row["teacher_specialty"] ?></span></td>
+                </tr>
+              <?php endif; ?>
+            <?php endforeach; ?>
 
-      </table>
-      <div class="d-flex justify-content-end">
+          </table>
+          <div class="d-flex justify-content-end">
+            <div>
+              <a class="btn btn-info me-3" href="teacher-list.php">回到教師清單</a>
 
-        <a class="btn btn-info me-3" href="teacher-list.php">回到教師清單</a>
 
-
-        <a class="btn btn-info" type="submit" href="teacher-edit.php?teacher_id=<?= $row["teacher_id"] ?>">編輯教師資訊</a>
+              <a class="btn btn-info" type="submit" href="teacher-edit.php?teacher_id=<?= $row["teacher_id"] ?>">編輯教師資訊</a>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
   <!-- Bootstrap JavaScript Libraries -->
