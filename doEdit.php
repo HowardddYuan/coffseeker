@@ -21,6 +21,7 @@ if($_FILES["teacher_img"]["error"]==0){
         $sqlImage="UPDATE coffseeker_teachers SET teacher_img='$imgFile' WHERE teacher_id=$id";
         if($conn->query($sqlImage) === TRUE){
             // header("location:teacher-list.php");
+            
             echo '已成功編輯'. '<a href="teacher-list.php" class="btn btn-info">回到教師清單</a>';
         }else{
             echo "修改資料錯誤" . $conn->error;
