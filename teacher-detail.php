@@ -36,7 +36,7 @@ $productImages=$resultImages->fetch_all(MYSQLI_ASSOC);
       <h2>教師資訊</h2>
       <div class="d-flex mt-5 justify-content-around">
         <?php foreach ($productImages as $image) : ?>
-          <div class="col-5 overflow-hidden" style="height:330px">
+          <div class="col-5 overflow-hidden d-flex justify-content-center" style="height:330px">
             <img class="object-fit-cover mw-100" src="/coffseeker/teacher-img/<?= $image["teacher_img"]?>" alt="">
 
           </div>

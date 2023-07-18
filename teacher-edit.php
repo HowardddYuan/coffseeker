@@ -65,6 +65,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <th>頭像</th>
                         <td class="">
                             <img class="object-fit-cover mw-100 overflow-hidden w-25 mb-3" src="/coffseeker/teacher-img/<?= $row["teacher_img"] ?>" alt="">
+                            
                             <input type="file" name="teacher_img" accept="image/jpeg, image/png, image/gif, image/webp">
 
                         </td>
